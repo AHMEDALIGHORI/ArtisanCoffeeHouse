@@ -132,7 +132,7 @@ export function ReservationSection() {
               Reserve Your <span className="text-primary">Table</span>
             </h2>
             <p className="text-muted-foreground text-lg mb-8">
-              Secure your spot at Artisan Coffee House. Whether it's a business meeting,
+              Secure your spot at Ahmed's Coffee House. Whether it's a business meeting,
               a date, or catching up with friends, we'll make it memorable.
             </p>
 

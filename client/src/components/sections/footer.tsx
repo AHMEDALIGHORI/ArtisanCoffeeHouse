@@ -37,7 +37,7 @@ export function Footer() {
           <div className="sm:col-span-2 lg:col-span-1">
             <a href="/" className="flex items-center gap-2 group mb-6">
               <Coffee className="h-8 w-8 text-primary transition-transform duration-300 group-hover:rotate-12" />
-              <span className="font-serif text-2xl font-bold tracking-tight">Artisan</span>
+              <span className="font-serif text-2xl font-bold tracking-tight">Ahmed's</span>
             </a>
             <p className="text-muted-foreground text-sm leading-relaxed mb-6">
               Crafting exceptional coffee experiences since 2010. Every cup is a testament
@@ -117,7 +117,7 @@ export function Footer() {
       <div className="border-t border-border/50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
           <div className="flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-muted-foreground">
-            <p>&copy; {new Date().getFullYear()} Artisan Coffee House. All rights reserved.</p>
+            <p>&copy; {new Date().getFullYear()} Ahmed's Coffee House. All rights reserved.</p>
             <p className="flex items-center gap-1">
               Made with <Heart className="h-4 w-4 text-red-500" /> for coffee lovers
             </p>

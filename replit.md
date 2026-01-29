@@ -1,8 +1,8 @@
-# Artisan Coffee House
+# Ahmed's Coffee House
 
 ## Overview
 
-A premium coffee shop website featuring an elegant landing page with menu display, table reservations, and user authentication. The application showcases artisan coffee products with a sophisticated dark/light theme system and smooth scroll animations.
+A premium coffee shop website featuring an elegant landing page with menu display, table reservations, and user authentication. The application showcases Ahmed's premium coffee products with a sophisticated dark/light theme system and smooth scroll animations.
 
 ## User Preferences
 

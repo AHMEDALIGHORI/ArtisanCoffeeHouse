@@ -14,7 +14,7 @@ const galleryImages = [
   {
     src: coffeeBeansImage,
     alt: "Premium roasted coffee beans",
-    title: "Artisan Beans",
+    title: "Premium Beans",
     className: "col-span-1 row-span-1",
   },
   {

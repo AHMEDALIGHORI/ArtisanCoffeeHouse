@@ -44,7 +44,7 @@ export function HeroSection() {
         <div className="animate-fade-in-up">
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass mb-8">
             <Sparkles className="h-4 w-4 text-amber-400" />
-            <span className="text-sm font-medium text-white/90">Premium Artisan Coffee</span>
+            <span className="text-sm font-medium text-white/90">Ahmed's Premium Coffee</span>
           </div>
         </div>
 

@@ -60,7 +60,7 @@ export function AboutSection() {
                 <span className="text-primary"> Excellence</span>
               </h2>
               <p className="text-muted-foreground text-lg leading-relaxed mb-8">
-                Born from a deep passion for exceptional coffee, Artisan Coffee House has been
+                Born from a deep passion for exceptional coffee, Ahmed's Coffee House has been
                 crafting memorable experiences since 2010. Our journey began with a simple
                 belief: that every cup of coffee should be a masterpiece.
               </p>

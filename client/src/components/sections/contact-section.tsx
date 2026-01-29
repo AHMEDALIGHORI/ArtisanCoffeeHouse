@@ -6,7 +6,7 @@ const contactInfo = [
   {
     icon: MapPin,
     title: "Location",
-    details: ["123 Artisan Street", "Downtown District", "New York, NY 10001"],
+    details: ["123 Ahmed's Street", "Downtown District", "New York, NY 10001"],
   },
   {
     icon: Phone,
@@ -16,7 +16,7 @@ const contactInfo = [
   {
     icon: Mail,
     title: "Email",
-    details: ["hello@artisancoffee.com", "reservations@artisancoffee.com"],
+    details: ["hello@ahmedscoffee.com", "reservations@ahmedscoffee.com"],
   },
   {
     icon: Clock,

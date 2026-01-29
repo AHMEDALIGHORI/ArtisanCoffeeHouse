@@ -50,7 +50,7 @@ export function Navigation() {
             <a className="flex items-center gap-2 group" data-testid="link-home">
               <Coffee className="h-8 w-8 text-primary transition-transform duration-300 group-hover:rotate-12" />
               <span className="font-serif text-xl lg:text-2xl font-bold tracking-tight">
-                Artisan
+                Ahmed's
               </span>
             </a>
           </Link>

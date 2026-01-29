@@ -11,7 +11,7 @@ const seedMenuItems = [
     available: true,
   },
   {
-    name: "Artisan Cappuccino",
+    name: "Ahmed's Cappuccino",
     description: "Perfectly balanced espresso with silky microfoam, topped with delicate latte art.",
     price: "5.50",
     category: "hot-coffee",
