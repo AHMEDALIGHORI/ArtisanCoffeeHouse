@@ -46,13 +46,11 @@ export function Navigation() {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 lg:h-20">
-          <Link href="/">
-            <a className="flex items-center gap-2 group" data-testid="link-home">
-              <Coffee className="h-8 w-8 text-primary transition-transform duration-300 group-hover:rotate-12" />
-              <span className="font-serif text-xl lg:text-2xl font-bold tracking-tight">
-                Ahmed's
-              </span>
-            </a>
+          <Link href="/" className="flex items-center gap-2 group" data-testid="link-home">
+            <Coffee className="h-8 w-8 text-primary transition-transform duration-300 group-hover:rotate-12" />
+            <span className="font-serif text-xl lg:text-2xl font-bold tracking-tight">
+              Ahmed's
+            </span>
           </Link>
 
           <div className="hidden lg:flex items-center gap-1">
@@ -82,18 +80,23 @@ export function Navigation() {
                     {user.firstName?.[0] || user.email?.[0]?.toUpperCase() || "U"}
                   </AvatarFallback>
                 </Avatar>
-                <a href="/api/logout">
-                  <Button variant="outline" size="sm" data-testid="button-logout">
-                    Sign Out
-                  </Button>
-                </a>
+                <Button 
+                  variant="outline" 
+                  size="sm" 
+                  data-testid="button-logout"
+                  onClick={() => window.location.href = "/api/logout"}
+                >
+                  Sign Out
+                </Button>
               </div>
             ) : (
-              <a href="/api/login">
-                <Button size="sm" data-testid="button-login">
-                  Sign In
-                </Button>
-              </a>
+              <Button 
+                size="sm" 
+                data-testid="button-login"
+                onClick={() => window.location.href = "/api/login"}
+              >
+                Sign In
+              </Button>
             )}
 
             <Button
