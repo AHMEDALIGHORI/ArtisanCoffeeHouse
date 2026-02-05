@@ -20,21 +20,26 @@ const getOidcConfig = memoize(
 
 export function getSession() {
   const sessionTtl = 7 * 24 * 60 * 60 * 1000; // 1 week
-  const pgStore = connectPg(session);
-  const sessionStore = new pgStore({
-    conString: process.env.DATABASE_URL,
-    createTableIfMissing: false,
-    ttl: sessionTtl,
-    tableName: "sessions",
-  });
+  
+  let store;
+  if (process.env.DATABASE_URL) {
+      const pgStore = connectPg(session);
+      store = new pgStore({
+        conString: process.env.DATABASE_URL,
+        createTableIfMissing: false,
+        ttl: sessionTtl,
+        tableName: "sessions",
+      });
+  }
+
   return session({
-    secret: process.env.SESSION_SECRET!,
-    store: sessionStore,
+    secret: process.env.SESSION_SECRET || "dev_secret_key_123",
+    store: store, // undefined means MemoryStore
     resave: false,
     saveUninitialized: false,
     cookie: {
       httpOnly: true,
-      secure: true,
+      secure: process.env.NODE_ENV === "production", // Only secure in production
       maxAge: sessionTtl,
     },
   });
@@ -65,6 +70,48 @@ export async function setupAuth(app: Express) {
   app.use(getSession());
   app.use(passport.initialize());
   app.use(passport.session());
+
+  passport.serializeUser((user: Express.User, cb) => cb(null, user));
+  passport.deserializeUser((user: Express.User, cb) => cb(null, user));
+
+  if (!process.env.REPL_ID && !process.env.DATABASE_URL) {
+      console.log("Skipping OIDC setup (no REPL_ID and no DATABASE_URL)");
+      // Register a mock login route for dev?
+        app.all("/api/login", (req, res) => {
+            const user = {
+                id: "dev-user",
+                claims: {
+                    sub: "dev-user",
+                    email: "dev@example.com",
+                    first_name: "Dev",
+                    last_name: "User",
+                    profile_image_url: null
+                },
+                email: "dev@example.com",
+                firstName: "Dev",
+                lastName: "User",
+            }
+             req.login(user, async (err) => {
+                 if (err) return res.status(500).send(err);
+                 // Also ensure the user exists in storage
+                 await authStorage.upsertUser({
+                     id: "dev-user",
+                     email: "dev@example.com",
+                     firstName: "Dev",
+                     lastName: "User",
+                     profileImageUrl: null
+                 });
+                 return res.redirect("/");
+             });
+        });
+        
+        app.get("/api/logout", (req, res) => {
+            req.logout(() => {
+                res.redirect("/");
+            });
+        });
+      return;
+  }
 
   const config = await getOidcConfig();
 
@@ -98,9 +145,6 @@ export async function setupAuth(app: Express) {
       registeredStrategies.add(strategyName);
     }
   };
-
-  passport.serializeUser((user: Express.User, cb) => cb(null, user));
-  passport.deserializeUser((user: Express.User, cb) => cb(null, user));
 
   app.get("/api/login", (req, res, next) => {
     ensureStrategy(req.hostname);

@@ -141,6 +141,10 @@ const seedMenuItems = [
 ];
 
 export async function seedDatabase() {
+  if (!db) {
+      console.log("No database connection, skipping seed");
+      return;
+  }
   try {
     const existingItems = await db.select().from(menuItems);
     

@@ -16,7 +16,7 @@ class AuthStorage implements IAuthStorage {
   }
 
   async upsertUser(userData: UpsertUser): Promise<User> {
-    const [user] = await db
+    const [user] = await db!
       .insert(users)
       .values(userData)
       .onConflictDoUpdate({
@@ -31,4 +31,34 @@ class AuthStorage implements IAuthStorage {
   }
 }
 
-export const authStorage = new AuthStorage();
+class MemAuthStorage implements IAuthStorage {
+    private users: Map<string, User> = new Map();
+
+    async getUser(id: string): Promise<User | undefined> {
+        return this.users.get(id);
+    }
+
+    async upsertUser(userData: UpsertUser): Promise<User> {
+        const id = userData.id || "gen-" + Math.random().toString(36).substring(7);
+        // We know id is string because of the default in schema but here it might be undefined in type
+        
+        const existing = this.users.get(id);
+        const user: User = {
+            ...(existing || {}),
+            ...userData,
+            id: id,
+            createdAt: existing?.createdAt || new Date(),
+            updatedAt: new Date(),
+            // Handle potentially undefined vs null fields if strict
+            email: userData.email || null,
+            firstName: userData.firstName || null,
+            lastName: userData.lastName || null,
+            profileImageUrl: userData.profileImageUrl || null
+        };
+        
+        this.users.set(id, user);
+        return user;
+    }
+}
+
+export const authStorage = process.env.DATABASE_URL ? new AuthStorage() : new MemAuthStorage();
