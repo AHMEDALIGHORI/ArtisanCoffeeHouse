@@ -96,3 +96,14 @@ For local testing, the authentication system is set to mock mode.
 ## 📄 License
 
 This project is licensed under the MIT License.
+
+
+## Suggested GitHub Topics
+
+~~~text
+react vite frontend web-app typescript tailwindcss food-website landing-page
+~~~
+
+## License
+
+This project is available under the MIT License. See [LICENSE](LICENSE).
